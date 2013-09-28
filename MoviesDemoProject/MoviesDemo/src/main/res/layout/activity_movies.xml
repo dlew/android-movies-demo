@@ -1,6 +1,21 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mobiata.moviesdemo.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoviesActivity" />
+    tools:context=".MoviesActivity">
+
+    <com.mobiata.moviesdemo.view.DecorFrameLayout
+        android:id="@+id/other"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test Button" />
+    </com.mobiata.moviesdemo.view.DecorFrameLayout>
+
+</com.mobiata.moviesdemo.view.ViewPager>
+
