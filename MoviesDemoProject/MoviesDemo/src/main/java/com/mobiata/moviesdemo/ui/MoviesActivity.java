@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.view.ViewPager;
@@ -109,14 +108,7 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a DummySectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			return new SpaceFragment();
 		}
 
 		@Override
@@ -146,26 +138,14 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 	}
 
 	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
+	 * A simple Fragment that just takes up space; We just want to use
+     * the Decor View on top for display.
 	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
-		public DummySectionFragment() {
-		}
-
+	public static class SpaceFragment extends Fragment {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_movies_dummy, container, false);
-			TextView dummyTextView = (TextView) rootView.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-			return rootView;
+			return inflater.inflate(R.layout.fragment_space, container, false);
 		}
 	}
 
