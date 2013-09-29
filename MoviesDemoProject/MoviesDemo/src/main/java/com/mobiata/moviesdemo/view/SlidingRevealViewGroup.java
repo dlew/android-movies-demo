@@ -8,8 +8,10 @@ import android.widget.RelativeLayout;
 /**
  * Holds two views which "slide" open
  *
- * The first child is assumed to be the "cover", while the second child
- * is assumed to be the "slide" which reveals/hides itself
+ * It is constructed via three view:
+ * 0 - A Spacer.  This represents the space the cover takes up when slid out.
+ * 1 - The sliding view.  This hides itself.
+ * 2 - The cover view.  This is always visible.
  */
 public class SlidingRevealViewGroup extends RelativeLayout {
 
@@ -23,6 +25,11 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 
 	// Represents how far in we are sliding; 0% == totally revealed, 100% == totally hidden
 	private float mRevealPercent;
+
+	// Internal Views
+	private View mSpaceView;
+	private View mSlidingView;
+	private View mCoverView;
 
 	public SlidingRevealViewGroup(Context context) {
 		this(context, null);
@@ -49,17 +56,9 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		if (getChildCount() != 2) {
-			throw new RuntimeException("Need two (and only two) children!");
-		}
-	}
-
-	@Override
-	protected void onAttachedToWindow() {
-		super.onAttachedToWindow();
-
-		View coverView = getChildAt(0);
-		coverView.bringToFront();
+		mSpaceView = getChildAt(0);
+		mSlidingView = getChildAt(1);
+		mCoverView = getChildAt(2);
 	}
 
 	public void setReveal(Reveal reveal) {
@@ -73,8 +72,8 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 	}
 
 	public float getSlideRevealX() {
-		View revealView = getChildAt(0);
-		return revealView.getWidth() - Math.abs(revealView.getTranslationX());
+		return mSlidingView.getWidth() - Math.abs(mSlidingView.getTranslationX())
+				- (mCoverView.getWidth() - mSpaceView.getWidth());
 	}
 
 	private void updateSlide() {
@@ -84,8 +83,17 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 			return;
 		}
 
-		View revealView = getChildAt(0);
-		float translationX = (1 - mRevealPercent) * revealView.getWidth();
-		revealView.setTranslationX(mReveal == Reveal.RIGHT ? -translationX : translationX);
+		// Hide part of the cover, based on the spacer
+		int widthDiff = mCoverView.getWidth() - mSpaceView.getWidth();
+		float coverTransX = mRevealPercent * widthDiff;
+		mCoverView.setTranslationX(mReveal == Reveal.RIGHT ? -coverTransX : coverTransX);
+
+		// Slide to reveal the View
+		//
+		// We need to take into account the cover sliding as well, so that the moment
+		// you start sliding over, the cover doesn't keep hiding things
+		float coverLeftoverX = (1 - mRevealPercent) * widthDiff;
+		float translationX = (1 - mRevealPercent) * mSlidingView.getWidth() - coverLeftoverX;
+		mSlidingView.setTranslationX(mReveal == Reveal.RIGHT ? -translationX : translationX);
 	}
 }
