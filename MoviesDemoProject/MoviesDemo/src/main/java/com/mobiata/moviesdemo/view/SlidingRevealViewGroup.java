@@ -72,6 +72,11 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 		updateSlide();
 	}
 
+	public float getSlideRevealX() {
+		View revealView = getChildAt(0);
+		return revealView.getWidth() - Math.abs(revealView.getTranslationX());
+	}
+
 	private void updateSlide() {
 		int width = getWidth();
 		if (width == 0) {

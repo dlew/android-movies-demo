@@ -58,7 +58,7 @@ public class SlidingPairView extends FrameLayout {
 			mSlideRight.setRevealPercent(-mSlide);
 			mSlideRight.setTranslationX(0);
 			mSlideLeft.setRevealPercent(0);
-			mSlideLeft.setTranslationX(mSlideLeft.getWidth() * -mSlide);
+			mSlideLeft.setTranslationX(mSlideRight.getSlideRevealX());
 		}
 		else if (mSlide == 0) {
 			mSlideRight.setRevealPercent(0);
@@ -67,10 +67,10 @@ public class SlidingPairView extends FrameLayout {
 			mSlideLeft.setTranslationX(0);
 		}
 		else {
-			mSlideRight.setRevealPercent(0);
-			mSlideRight.setTranslationX(-mSlideRight.getWidth() * mSlide);
 			mSlideLeft.setRevealPercent(mSlide);
 			mSlideLeft.setTranslationX(0);
+			mSlideRight.setRevealPercent(0);
+			mSlideRight.setTranslationX(-mSlideLeft.getSlideRevealX());
 		}
 	}
 }
