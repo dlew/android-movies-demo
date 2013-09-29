@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobiata.moviesdemo.R;
+import com.mobiata.moviesdemo.view.SlidingRevealViewGroup;
 import com.mobiata.moviesdemo.view.ViewPager;
 
 import java.util.Locale;
@@ -34,6 +35,10 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 	 */
 	ViewPager mViewPager;
 
+	// Temporarily here, while we figure out the best place to put these
+	private SlidingRevealViewGroup mSlideView;
+	private SlidingRevealViewGroup mSlideViewTheSecond;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,16 +56,6 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
-		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-			@Override
-			public void onPageSelected(int position) {
-				actionBar.setSelectedNavigationItem(position);
-			}
-		});
-
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
 			// Create a tab with text corresponding to the page title defined by
@@ -72,6 +67,52 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 							.setText(mSectionsPagerAdapter.getPageTitle(i))
 							.setTabListener(this));
 		}
+
+		mViewPager.setCurrentItem(1);
+		actionBar.setSelectedNavigationItem(1);
+
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+				if (position == 0) {
+					mSlideView.setRevealPercent(1 - positionOffset);
+                    mSlideView.setTranslationX(0);
+                    mSlideViewTheSecond.setRevealPercent(0);
+                    mSlideViewTheSecond.setTranslationX(mSlideViewTheSecond.getWidth() * (1 - positionOffset));
+				}
+				else if (position == 1) {
+					mSlideView.setRevealPercent(0);
+                    mSlideView.setTranslationX(-mSlideView.getWidth() * positionOffset);
+					mSlideViewTheSecond.setRevealPercent(positionOffset);
+                    mSlideViewTheSecond.setTranslationX(0);
+				}
+				else if (position == 2) {
+                    mSlideView.setRevealPercent(0);
+                    mSlideView.setTranslationX(-mSlideView.getWidth());
+					mSlideViewTheSecond.setRevealPercent(1);
+                    mSlideViewTheSecond.setTranslationX(0);
+				}
+			}
+
+			@Override
+			public void onPageSelected(int position) {
+				actionBar.setSelectedNavigationItem(position);
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+
+			}
+		});
+
+		mSlideView = (SlidingRevealViewGroup) findViewById(R.id.slide_reveal_one);
+		mSlideViewTheSecond = (SlidingRevealViewGroup) findViewById(R.id.slide_reveal_two);
+
+		// TODO: Config in XML?
+		mSlideView.setReveal(SlidingRevealViewGroup.Reveal.RIGHT);
+		mSlideView.setRevealPercent(0);
+		mSlideViewTheSecond.setReveal(SlidingRevealViewGroup.Reveal.LEFT);
+		mSlideViewTheSecond.setRevealPercent(0);
 	}
 
 	@Override
@@ -139,7 +180,7 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 
 	/**
 	 * A simple Fragment that just takes up space; We just want to use
-     * the Decor View on top for display.
+	 * the Decor View on top for display.
 	 */
 	public static class SpaceFragment extends Fragment {
 		@Override
