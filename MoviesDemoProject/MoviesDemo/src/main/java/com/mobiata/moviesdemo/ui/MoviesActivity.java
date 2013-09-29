@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.mobiata.moviesdemo.R;
-import com.mobiata.moviesdemo.view.SlidingRevealViewGroup;
+import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.view.ViewPager;
+import com.mobiata.moviesdemo.widget.MovieAdapter;
 
 import java.util.Locale;
 
@@ -35,9 +37,8 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 	 */
 	ViewPager mViewPager;
 
-	// Temporarily here, while we figure out the best place to put these
-	private SlidingRevealViewGroup mSlideView;
-	private SlidingRevealViewGroup mSlideViewTheSecond;
+	// ListView on screen
+	private MovieAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,22 +76,13 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 			@Override
 			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 				if (position == 0) {
-					mSlideView.setRevealPercent(1 - positionOffset);
-                    mSlideView.setTranslationX(0);
-                    mSlideViewTheSecond.setRevealPercent(0);
-                    mSlideViewTheSecond.setTranslationX(mSlideViewTheSecond.getWidth() * (1 - positionOffset));
+					mAdapter.setSlide(positionOffset - 1);
 				}
 				else if (position == 1) {
-					mSlideView.setRevealPercent(0);
-                    mSlideView.setTranslationX(-mSlideView.getWidth() * positionOffset);
-					mSlideViewTheSecond.setRevealPercent(positionOffset);
-                    mSlideViewTheSecond.setTranslationX(0);
+					mAdapter.setSlide(positionOffset);
 				}
 				else if (position == 2) {
-                    mSlideView.setRevealPercent(0);
-                    mSlideView.setTranslationX(-mSlideView.getWidth());
-					mSlideViewTheSecond.setRevealPercent(1);
-                    mSlideViewTheSecond.setTranslationX(0);
+					mAdapter.setSlide(1);
 				}
 			}
 
@@ -105,14 +97,9 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 			}
 		});
 
-		mSlideView = (SlidingRevealViewGroup) findViewById(R.id.slide_reveal_one);
-		mSlideViewTheSecond = (SlidingRevealViewGroup) findViewById(R.id.slide_reveal_two);
-
-		// TODO: Config in XML?
-		mSlideView.setReveal(SlidingRevealViewGroup.Reveal.RIGHT);
-		mSlideView.setRevealPercent(0);
-		mSlideViewTheSecond.setReveal(SlidingRevealViewGroup.Reveal.LEFT);
-		mSlideViewTheSecond.setRevealPercent(0);
+		ListView lv = (ListView) findViewById(R.id.sliding_list_view);
+		mAdapter = new MovieAdapter(this, Movie.generateDemoMovies());
+		lv.setAdapter(mAdapter);
 	}
 
 	@Override

@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MoviesActivity"
+    android:padding="8dp">
+
+    <com.mobiata.moviesdemo.view.SlidingPairView
+        android:id="@+id/sliding_pair"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Reveal to right -->
+
+        <com.mobiata.moviesdemo.view.SlidingRevealViewGroup
+            android:id="@+id/slide_reveal_right"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <View
+                android:id="@+id/poster_view"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:background="#F00" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/poster_view"
+                android:layout_alignParentRight="true"
+                android:background="#0F0" />
+
+        </com.mobiata.moviesdemo.view.SlidingRevealViewGroup>
+
+        <!-- Reveal to left -->
+
+        <com.mobiata.moviesdemo.view.SlidingRevealViewGroup
+            android:id="@+id/slide_reveal_left"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <View
+                android:id="@+id/poster_view"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#0FF" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/poster_view"
+                android:layout_alignParentLeft="true"
+                android:background="#FF0" />
+
+        </com.mobiata.moviesdemo.view.SlidingRevealViewGroup>
+    </com.mobiata.moviesdemo.view.SlidingPairView>
+
+</FrameLayout>

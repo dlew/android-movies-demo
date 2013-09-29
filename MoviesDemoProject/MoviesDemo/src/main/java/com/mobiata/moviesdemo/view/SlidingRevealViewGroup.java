@@ -37,10 +37,12 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 	}
 
 	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		super.onLayout(changed, l, t, r, b);
 
-		updateSlide();
+		if (changed) {
+			updateSlide();
+		}
 	}
 
 	@Override
