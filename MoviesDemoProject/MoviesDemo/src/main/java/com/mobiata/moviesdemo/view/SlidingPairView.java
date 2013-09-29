@@ -36,7 +36,7 @@ public class SlidingPairView extends FrameLayout {
 		mSlideLeft = (SlidingRevealViewGroup) findViewById(R.id.slide_reveal_left);
 
 		mSlideRight.setReveal(SlidingRevealViewGroup.Reveal.RIGHT);
-		mSlideLeft.setReveal(SlidingRevealViewGroup.Reveal.LEFT);
+		mSlideLeft.setReveal(SlidingRevealViewGroup.Reveal.RIGHT);
 	}
 
 	@Override
@@ -54,21 +54,23 @@ public class SlidingPairView extends FrameLayout {
 	}
 
 	private void updateSlide() {
+        float slideHideX = mSlideLeft.getSlideHideX();
+
 		if (mSlide < 0) {
 			mSlideRight.setRevealPercent(-mSlide);
 			mSlideRight.setTranslationX(0);
 			mSlideLeft.setRevealPercent(0);
-			mSlideLeft.setTranslationX(mSlideRight.getSlideRevealX());
+			mSlideLeft.setTranslationX(slideHideX + mSlideRight.getSlideRevealX());
 		}
 		else if (mSlide == 0) {
 			mSlideRight.setRevealPercent(0);
 			mSlideRight.setTranslationX(0);
 			mSlideLeft.setRevealPercent(0);
-			mSlideLeft.setTranslationX(0);
+			mSlideLeft.setTranslationX(slideHideX);
 		}
 		else {
 			mSlideLeft.setRevealPercent(mSlide);
-			mSlideLeft.setTranslationX(0);
+			mSlideLeft.setTranslationX((1 - mSlide) * slideHideX);
 			mSlideRight.setRevealPercent(0);
 			mSlideRight.setTranslationX(-mSlideLeft.getSlideRevealX());
 		}

@@ -28,13 +28,13 @@
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/space_view"
                 android:layout_alignParentRight="true"
-                android:background="#0F0" />
+                android:background="#F00" />
 
             <View
                 android:id="@+id/poster_view"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:background="#F00" />
+                android:background="#0F0" />
 
         </com.mobiata.moviesdemo.view.SlidingRevealViewGroup>
 
@@ -48,21 +48,19 @@
             <Space
                 android:id="@+id/space_view"
                 android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true" />
+                android:layout_height="match_parent" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/space_view"
-                android:layout_alignParentLeft="true"
+                android:layout_toRightOf="@+id/space_view"
+                android:layout_alignParentRight="true"
                 android:background="#FF0" />
 
             <View
                 android:id="@+id/poster_view"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
                 android:background="#0FF" />
 
         </com.mobiata.moviesdemo.view.SlidingRevealViewGroup>

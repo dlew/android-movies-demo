@@ -76,6 +76,10 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 				- (mCoverView.getWidth() - mSpaceView.getWidth());
 	}
 
+    public float getSlideHideX() {
+        return getWidth() - mCoverView.getWidth();
+    }
+
 	private void updateSlide() {
 		int width = getWidth();
 		if (width == 0) {
