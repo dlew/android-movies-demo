@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.data.Movie;
+import com.mobiata.moviesdemo.util.BitmapCache;
 
 public class MovieRowView extends SlidingRevealViewGroup {
 
@@ -31,7 +32,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	}
 
 	public void bind(Movie movie) {
-		mPosterView.setImageResource(movie.getPosterResId());
+		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
 	}
 
     @Override

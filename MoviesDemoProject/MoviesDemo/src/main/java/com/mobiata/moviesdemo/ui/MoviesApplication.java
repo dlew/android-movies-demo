@@ -5,6 +5,7 @@ import android.util.JsonReader;
 
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.data.Movie;
+import com.mobiata.moviesdemo.util.BitmapCache;
 import com.mobiata.moviesdemo.util.ResourceUtils;
 
 import java.io.IOException;
@@ -20,6 +21,8 @@ public class MoviesApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		BitmapCache.init(this);
 
 		// Load all demo data on start; normally a horrible practice but I'll allow it for a demo
 		mDemoData = new ArrayList<Movie>();
