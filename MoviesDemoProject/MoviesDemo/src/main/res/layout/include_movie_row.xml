@@ -15,7 +15,7 @@
         android:layout_alignParentRight="true"
         android:background="#F00" />
 
-    <ImageView
+    <com.mobiata.moviesdemo.view.SlidingImageView
         android:id="@+id/poster_view"
         android:layout_width="150dp"
         android:layout_height="match_parent"

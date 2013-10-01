@@ -33,4 +33,10 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	public void bind(Movie movie) {
 		mPosterView.setImageResource(movie.getPosterResId());
 	}
+
+    @Override
+    protected void onUpdateSlide() {
+        super.onUpdateSlide();
+        mPosterView.invalidate();
+    }
 }
