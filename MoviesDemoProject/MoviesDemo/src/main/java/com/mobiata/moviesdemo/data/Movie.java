@@ -1,29 +1,24 @@
 package com.mobiata.moviesdemo.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Movie {
 
 	private String mTitle;
 
-	private String mSynopsis;
+	private int mPosterResId;
 
-	private String mStoryline;
+	public String getTitle() {
+		return mTitle;
+	}
 
-	private String mPosterUrl;
+	public void setTitle(String title) {
+		mTitle = title;
+	}
 
-    // For the purposes of a demo, pre-generated content
-	public static List<Movie> generateDemoMovies() {
-        List<Movie> movies = new ArrayList<Movie>();
-        movies.add(new Movie());
-        movies.add(new Movie());
-        movies.add(new Movie());
-        movies.add(new Movie());
-        movies.add(new Movie());
-        movies.add(new Movie());
-        movies.add(new Movie());
-        movies.add(new Movie());
-		return movies;
+	public int getPosterResId() {
+		return mPosterResId;
+	}
+
+	public void setPosterResId(int posterResId) {
+		mPosterResId = posterResId;
 	}
 }

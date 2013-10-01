@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.mobiata.moviesdemo.R;
-import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.view.ViewPager;
 import com.mobiata.moviesdemo.widget.MovieAdapter;
 
@@ -98,7 +97,8 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		});
 
 		ListView lv = (ListView) findViewById(R.id.sliding_list_view);
-		mAdapter = new MovieAdapter(this, Movie.generateDemoMovies());
+		MoviesApplication app = (MoviesApplication) getApplication();
+		mAdapter = new MovieAdapter(this, app.getDemoData());
 		lv.setAdapter(mAdapter);
 	}
 

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "A Bug's Life",
+    "poster": "poster_a_bugs_life"
+  },
+  {
+    "name": "The Avengers",
+    "poster": "poster_the_avengers"
+  },
+  {
+    "name": "Being John Malkovic",
+    "poster": "poster_being_john_malkovic"
+  },
+  {
+    "name": "Face Off",
+    "poster": "poster_face_off"
+  },
+  {
+    "name": "Harry Potter",
+    "poster": "poster_harry_potter"
+  },
+  {
+    "name": "Green Lantern",
+    "poster": "poster_green_lantern"
+  },
+  {
+    "name": "Ocean's Eleven",
+    "poster": "poster_oceans_eleven"
+  },
+  {
+    "name": "The Shining",
+    "poster": "poster_the_shining"
+  },
+  {
+    "name": "Titanic",
+    "poster": "poster_titanic"
+  },
+  {
+    "name": "Top Gun",
+    "poster": "poster_top_gun"
+  }
+]
