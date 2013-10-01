@@ -1,0 +1,25 @@
+<com.mobiata.moviesdemo.view.MovieRowView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/slide_reveal_right"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <Space
+        android:id="@+id/space_view"
+        android:layout_width="120dp"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/space_view"
+        android:layout_alignParentRight="true"
+        android:background="#F00" />
+
+    <ImageView
+        android:id="@+id/poster_view"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:background="#0F0"
+        android:scaleType="centerCrop" />
+
+</com.mobiata.moviesdemo.view.MovieRowView>

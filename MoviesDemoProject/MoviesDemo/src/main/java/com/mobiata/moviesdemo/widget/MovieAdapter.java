@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.data.Movie;
+import com.mobiata.moviesdemo.view.MovieRowView;
 import com.mobiata.moviesdemo.view.SlidingPairView;
 
 import java.util.List;
@@ -55,6 +56,8 @@ public class MovieAdapter extends BaseAdapter {
 
 			vh = new ViewHolder();
 			vh.mSlidingPairView = (SlidingPairView) convertView.findViewById(R.id.sliding_pair);
+			vh.mNowPlayingMovie = (MovieRowView) convertView.findViewById(R.id.slide_reveal_right);
+			vh.mUpcomingMovie = (MovieRowView) convertView.findViewById(R.id.slide_reveal_left);
 
 			convertView.setTag(vh);
 		}
@@ -62,13 +65,20 @@ public class MovieAdapter extends BaseAdapter {
 			vh = (ViewHolder) convertView.getTag();
 		}
 
+		Pair<Movie, Movie> moviePair = getItem(position);
+
 		vh.mSlidingPairView.setSlide(mSlide);
+
+		vh.mNowPlayingMovie.bind(moviePair.first);
+        vh.mUpcomingMovie.bind(moviePair.second);
 
 		return convertView;
 	}
 
 	private static final class ViewHolder {
 		SlidingPairView mSlidingPairView;
+		MovieRowView mNowPlayingMovie;
+		MovieRowView mUpcomingMovie;
 	}
 
 }
