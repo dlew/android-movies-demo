@@ -99,11 +99,5 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 		float coverLeftoverX = (1 - mRevealPercent) * widthDiff;
 		float translationX = (1 - mRevealPercent) * mSlidingView.getWidth() - coverLeftoverX;
 		mSlidingView.setTranslationX(mReveal == Reveal.RIGHT ? -translationX : translationX);
-
-		onUpdateSlide();
-	}
-
-	protected void onUpdateSlide() {
-		// Intentionally blank, left for others to manipulate
 	}
 }

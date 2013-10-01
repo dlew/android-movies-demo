@@ -15,11 +15,27 @@
         android:layout_alignParentRight="true"
         android:background="#F00" />
 
-    <com.mobiata.moviesdemo.view.SlidingImageView
-        android:id="@+id/poster_view"
+    <com.mobiata.moviesdemo.view.CenteringRelativeLayout
         android:layout_width="150dp"
-        android:layout_height="match_parent"
-        android:background="#0F0"
-        android:scaleType="centerCrop" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/poster_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#A000"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:padding="8dp"
+            android:textColor="@android:color/white" />
+    </com.mobiata.moviesdemo.view.CenteringRelativeLayout>
+
 
 </com.mobiata.moviesdemo.view.MovieRowView>
