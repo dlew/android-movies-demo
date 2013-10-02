@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/space_view"
         android:layout_alignParentRight="true"
-        android:background="#F00" />
+        android:background="#595658" />
 
     <com.mobiata.moviesdemo.view.CenteringRelativeLayout
         android:layout_width="150dp"
