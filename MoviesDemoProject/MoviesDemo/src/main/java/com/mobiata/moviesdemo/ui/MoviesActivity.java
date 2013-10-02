@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.mobiata.moviesdemo.R;
+import com.mobiata.moviesdemo.view.SlidingListView;
 import com.mobiata.moviesdemo.view.ViewPager;
 import com.mobiata.moviesdemo.widget.MovieAdapter;
 
@@ -37,6 +37,7 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 	ViewPager mViewPager;
 
 	// ListView on screen
+	private SlidingListView mListView;
 	private MovieAdapter mAdapter;
 
 	@Override
@@ -77,13 +78,13 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 			@Override
 			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 				if (position == 0) {
-					mAdapter.setSlide(positionOffset - 1);
+					setSlide(positionOffset - 1);
 				}
 				else if (position == 1) {
-					mAdapter.setSlide(positionOffset);
+					setSlide(positionOffset);
 				}
 				else if (position == 2) {
-					mAdapter.setSlide(1);
+					setSlide(1);
 				}
 			}
 
@@ -98,10 +99,15 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 			}
 		});
 
-		ListView lv = (ListView) findViewById(R.id.sliding_list_view);
+		mListView = (SlidingListView) findViewById(R.id.sliding_list_view);
 		MoviesApplication app = (MoviesApplication) getApplication();
 		mAdapter = new MovieAdapter(this, app.getDemoData());
-		lv.setAdapter(mAdapter);
+		mListView.setAdapter(mAdapter);
+	}
+
+	private void setSlide(float slide) {
+		mAdapter.setSlide(slide);
+		mListView.setSlide(slide);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.mobiata.moviesdemo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,9 +39,13 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	}
 
 	public void bind(Movie movie) {
-		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
-		mTitleView.setText(movie.getTitle());
-		mContentTitleView.setText(movie.getTitle());
+		// Only bind if we're not mid-reveal
+		float revealPercent = getRevealPercent();
+		if (revealPercent == 0 || revealPercent == 1) {
+			mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
+			mTitleView.setText(movie.getTitle());
+			mContentTitleView.setText(movie.getTitle());
+		}
 	}
 
 	@Override

@@ -29,7 +29,6 @@ public class MovieAdapter extends BaseAdapter {
 
 	public void setSlide(float slide) {
 		mSlide = slide;
-		notifyDataSetChanged();
 	}
 
 	@Override
