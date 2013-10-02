@@ -76,6 +76,8 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		actionBar.setSelectedNavigationItem(1);
 
 		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			private int mLastState;
+
 			@Override
 			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 				if (position == 0) {
@@ -96,7 +98,14 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 
 			@Override
 			public void onPageScrollStateChanged(int state) {
+				if (state == ViewPager.SCROLL_STATE_IDLE) {
+					mListView.setUseHardwareLayers(false);
+				}
+				else if (mLastState == ViewPager.SCROLL_STATE_IDLE) {
+					mListView.setUseHardwareLayers(true);
+				}
 
+				mLastState = state;
 			}
 		});
 

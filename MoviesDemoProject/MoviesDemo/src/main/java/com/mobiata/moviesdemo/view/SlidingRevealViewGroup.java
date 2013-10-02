@@ -113,4 +113,8 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 	protected void onUpdateSlide() {
 		// For subclasses to implement if necessary
 	}
+
+	public void setUseHardwareLayers(boolean useHardwareLayers) {
+		// For subclasses to initialize hardware layers during animations
+	}
 }

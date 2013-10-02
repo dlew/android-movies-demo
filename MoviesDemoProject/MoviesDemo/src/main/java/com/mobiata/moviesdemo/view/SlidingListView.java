@@ -36,4 +36,12 @@ public class SlidingListView extends ListView {
             child.setSlide(slide);
         }
     }
+
+	public void setUseHardwareLayers(boolean useHardwareLayers) {
+		int childCount = getChildCount();
+		for (int a = 0; a < childCount; a++) {
+			SlidingPairView child = (SlidingPairView) getChildAt(a).findViewById(R.id.sliding_pair);
+			child.setUseHardwareLayers(useHardwareLayers);
+		}
+	}
 }

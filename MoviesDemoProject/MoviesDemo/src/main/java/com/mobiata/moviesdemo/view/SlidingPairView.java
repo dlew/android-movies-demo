@@ -54,7 +54,7 @@ public class SlidingPairView extends FrameLayout {
 	}
 
 	private void updateSlide() {
-        float slideHideX = mSlideLeft.getSlideHideX();
+		float slideHideX = mSlideLeft.getSlideHideX();
 
 		if (mSlide < 0) {
 			mSlideRight.setRevealPercent(-mSlide);
@@ -75,4 +75,10 @@ public class SlidingPairView extends FrameLayout {
 			mSlideRight.setTranslationX(-mSlideLeft.getSlideRevealX());
 		}
 	}
+
+	public void setUseHardwareLayers(boolean useHardwareLayers) {
+		mSlideRight.setUseHardwareLayers(useHardwareLayers);
+		mSlideLeft.setUseHardwareLayers(useHardwareLayers);
+	}
+
 }
