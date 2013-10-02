@@ -44,6 +44,8 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_movies);
 
+		getWindow().setBackgroundDrawable(null);
+
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

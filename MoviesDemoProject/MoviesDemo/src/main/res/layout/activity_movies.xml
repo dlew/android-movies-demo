@@ -7,7 +7,8 @@
 
     <com.mobiata.moviesdemo.view.DecorFrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#332E31">
 
         <ListView
             android:id="@+id/sliding_list_view"
