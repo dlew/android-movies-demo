@@ -18,13 +18,16 @@ public class MovieAdapter extends BaseAdapter {
 
 	private Context mContext;
 
+	private MovieAdapterListener mListener;
+
 	private List<Movie> mMovies;
 
 	private float mSlide;
 
-	public MovieAdapter(Context context, List<Movie> movies) {
+	public MovieAdapter(Context context, List<Movie> movies, MovieAdapterListener listener) {
 		mContext = context;
 		mMovies = movies;
+		mListener = listener;
 	}
 
 	public void setSlide(float slide) {
@@ -64,12 +67,26 @@ public class MovieAdapter extends BaseAdapter {
 			vh = (ViewHolder) convertView.getTag();
 		}
 
-		Pair<Movie, Movie> moviePair = getItem(position);
+		final Pair<Movie, Movie> moviePair = getItem(position);
 
 		vh.mSlidingPairView.setSlide(mSlide);
 
 		vh.mNowPlayingMovie.bind(moviePair.first);
-        vh.mUpcomingMovie.bind(moviePair.second);
+		vh.mUpcomingMovie.bind(moviePair.second);
+
+		vh.mNowPlayingMovie.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mListener.onMovieClicked(moviePair.first, true);
+			}
+		});
+
+		vh.mUpcomingMovie.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mListener.onMovieClicked(moviePair.second, false);
+			}
+		});
 
 		return convertView;
 	}
@@ -78,6 +95,13 @@ public class MovieAdapter extends BaseAdapter {
 		SlidingPairView mSlidingPairView;
 		MovieRowView mNowPlayingMovie;
 		MovieRowView mUpcomingMovie;
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	// Listener
+
+	public interface MovieAdapterListener {
+		public void onMovieClicked(Movie movie, boolean isOnLeft);
 	}
 
 }

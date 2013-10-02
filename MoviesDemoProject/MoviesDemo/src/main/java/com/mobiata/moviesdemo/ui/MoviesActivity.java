@@ -13,13 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mobiata.moviesdemo.R;
+import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.view.SlidingListView;
 import com.mobiata.moviesdemo.view.ViewPager;
 import com.mobiata.moviesdemo.widget.MovieAdapter;
 
 import java.util.Locale;
 
-public class MoviesActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MoviesActivity extends FragmentActivity implements ActionBar.TabListener,
+		MovieAdapter.MovieAdapterListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -111,7 +113,7 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 
 		mListView = (SlidingListView) findViewById(R.id.sliding_list_view);
 		MoviesApplication app = (MoviesApplication) getApplication();
-		mAdapter = new MovieAdapter(this, app.getDemoData());
+		mAdapter = new MovieAdapter(this, app.getDemoData(), this);
 		mListView.setAdapter(mAdapter);
 	}
 
@@ -132,6 +134,18 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onBackPressed() {
+		// If the user is looking at detailed rows, put them back to the other screen instead
+		// of leaving the page entirely
+		if (mViewPager.getCurrentItem() != 1) {
+			mViewPager.setCurrentItem(1, true);
+		}
+		else {
+			super.onBackPressed();
+		}
 	}
 
 	@Override
@@ -195,4 +209,14 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		}
 	}
 
+	//////////////////////////////////////////////////////////////////////////
+	// MovieAdapterListener
+
+	@Override
+	public void onMovieClicked(Movie movie, boolean isOnLeft) {
+		int targetItem = isOnLeft ? 0 : 2;
+		if (mViewPager.getCurrentItem() != targetItem) {
+			mViewPager.setCurrentItem(targetItem, true);
+		}
+	}
 }
