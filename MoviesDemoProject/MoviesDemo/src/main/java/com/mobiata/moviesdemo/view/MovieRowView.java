@@ -12,7 +12,7 @@ import com.mobiata.moviesdemo.util.BitmapCache;
 public class MovieRowView extends SlidingRevealViewGroup {
 
 	private ImageView mPosterView;
-    private TextView mTitleView;
+	private TextView mTitleView;
 
 	public MovieRowView(Context context) {
 		super(context);
@@ -31,12 +31,19 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		super.onFinishInflate();
 
 		mPosterView = (ImageView) findViewById(R.id.poster_view);
-        mTitleView = (TextView) findViewById(R.id.title_view);
+		mTitleView = (TextView) findViewById(R.id.title_view);
 	}
 
 	public void bind(Movie movie) {
 		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
-        mTitleView.setText(movie.getTitle());
+		mTitleView.setText(movie.getTitle());
 	}
 
+	@Override
+	protected void onUpdateSlide() {
+		super.onUpdateSlide();
+
+		float revealPercent = getRevealPercent();
+		mTitleView.setAlpha(1 - revealPercent);
+	}
 }
