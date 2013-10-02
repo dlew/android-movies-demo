@@ -14,6 +14,8 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	private ImageView mPosterView;
 	private TextView mTitleView;
 
+	private TextView mContentTitleView;
+
 	public MovieRowView(Context context) {
 		super(context);
 	}
@@ -32,11 +34,13 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 		mPosterView = (ImageView) findViewById(R.id.poster_view);
 		mTitleView = (TextView) findViewById(R.id.title_view);
+		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
 	}
 
 	public void bind(Movie movie) {
 		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
 		mTitleView.setText(movie.getTitle());
+		mContentTitleView.setText(movie.getTitle());
 	}
 
 	@Override
