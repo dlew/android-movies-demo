@@ -104,6 +104,9 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 		float translationX = (1 - mRevealPercent) * mSlidingView.getWidth() - coverLeftoverX;
 		mSlidingView.setTranslationX(mReveal == Reveal.RIGHT ? -translationX : translationX);
 
+		// Optimize if we're not showing the sliding view at all
+		mSlidingView.setVisibility(mRevealPercent == 0 ? View.GONE : View.VISIBLE);
+
 		onUpdateSlide();
 	}
 
