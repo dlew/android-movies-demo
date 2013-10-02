@@ -112,6 +112,13 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		});
 
 		mListView = (SlidingListView) findViewById(R.id.sliding_list_view);
+
+		// Add some spacing views above/below the rest of the rows; this keeps us from having
+		// to customize the first/last rows to add some extra padding
+		LayoutInflater inflater = LayoutInflater.from(this);
+		mListView.addHeaderView(inflater.inflate(R.layout.include_header_footer_space, mListView, false));
+		mListView.addFooterView(inflater.inflate(R.layout.include_header_footer_space, mListView, false));
+
 		MoviesApplication app = (MoviesApplication) getApplication();
 		mAdapter = new MovieAdapter(this, app.getDemoData(), this);
 		mListView.setAdapter(mAdapter);
