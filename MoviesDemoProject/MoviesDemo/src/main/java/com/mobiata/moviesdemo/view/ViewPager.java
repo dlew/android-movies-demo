@@ -804,7 +804,7 @@ public class ViewPager extends ViewGroup {
         } else {
             final float pageWidth = width * mAdapter.getPageWidth(mCurItem);
             final float pageDelta = (float) Math.abs(dx) / (pageWidth + mPageMargin);
-            duration = (int) ((pageDelta + 1) * 100);
+            duration = (int) ((pageDelta + 1) * 300);
         }
         duration = Math.min(duration, MAX_SETTLE_DURATION);
 
