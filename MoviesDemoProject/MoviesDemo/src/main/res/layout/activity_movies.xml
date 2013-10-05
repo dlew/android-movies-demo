@@ -1,4 +1,5 @@
-<com.mobiata.moviesdemo.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mobiata.moviesdemo.view.ViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pager"
     android:layout_width="match_parent"
@@ -7,15 +8,14 @@
 
     <com.mobiata.moviesdemo.view.DecorFrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#332E31">
+        android:layout_height="match_parent">
 
         <com.mobiata.moviesdemo.view.SlidingListView
             android:id="@+id/sliding_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            android:dividerHeight="0dp" />
+            android:dividerHeight="0dp"/>
 
     </com.mobiata.moviesdemo.view.DecorFrameLayout>
 
