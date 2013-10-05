@@ -51,6 +51,16 @@ public class MovieAdapter extends BaseAdapter {
 	}
 
 	@Override
+	public boolean areAllItemsEnabled() {
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled(int position) {
+		return false;
+	}
+
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder vh;
 		if (convertView == null) {
