@@ -61,6 +61,11 @@ public class MoviesApplication extends Application {
 		catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+
+		// Preload all bitmaps into memory, so the demo runs smoother
+		for (Movie movie : mDemoData) {
+			BitmapCache.getBitmap(movie.getPosterResId());
+		}
 	}
 
 	private static String convertStreamToString(InputStream is) {
