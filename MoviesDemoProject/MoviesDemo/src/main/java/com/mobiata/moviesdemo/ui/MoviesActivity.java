@@ -3,14 +3,17 @@ package com.mobiata.moviesdemo.ui;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.data.Movie;
@@ -132,6 +135,20 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.movies, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_search:
+				Toast.makeText(this, "Search not implemented for demo", Toast.LENGTH_SHORT).show();
+				return true;
+			case R.id.action_about:
+				DialogFragment df = new AboutDialogFragment();
+				df.show(getSupportFragmentManager(), "aboutDf");
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
