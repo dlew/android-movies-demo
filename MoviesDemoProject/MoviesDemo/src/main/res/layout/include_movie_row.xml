@@ -1,14 +1,17 @@
-<com.mobiata.moviesdemo.view.MovieRowView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mobiata.moviesdemo.view.MovieRowView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/slide_reveal_right"
     android:layout_width="match_parent"
-    android:layout_height="168dp">
+    android:layout_height="@dimen/cell_size"
+    android:paddingLeft="@dimen/cell_padding"
+    android:paddingRight="@dimen/cell_padding">
 
     <!-- The size of the cover when it shrinks -->
 
     <Space
         android:id="@+id/space_view"
         android:layout_width="120dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
     <!-- The content of the slide -->
 
@@ -26,21 +29,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"/>
 
     </RelativeLayout>
 
     <!-- The cover of the slide -->
 
     <com.mobiata.moviesdemo.view.CenteringRelativeLayout
-        android:layout_width="168dp"
+        android:layout_width="@dimen/cell_size"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/poster_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/title_view"
@@ -52,7 +55,7 @@
             android:singleLine="true"
             android:padding="8dp"
             android:textSize="16dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"/>
     </com.mobiata.moviesdemo.view.CenteringRelativeLayout>
 
 

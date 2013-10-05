@@ -1,7 +1,8 @@
 <resources>
 
+    <!-- Quick hack, but 2*cell_size + 3*cell_padding == swXdp-->
+    <dimen name="cell_size">156dp</dimen>
     <dimen name="cell_padding">16dp</dimen>
     <dimen name="cell_padding_half">8dp</dimen>
-
 
 </resources>

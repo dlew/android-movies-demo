@@ -13,7 +13,10 @@ public class SlidingPairView extends FrameLayout {
 
 	private float mSlide;
 
+	// This one starts on the left, and reveals TO the right
 	private SlidingRevealViewGroup mSlideRight;
+
+	// This one starts on the right, reveals TO the left
 	private SlidingRevealViewGroup mSlideLeft;
 
 	public SlidingPairView(Context context) {
@@ -54,23 +57,25 @@ public class SlidingPairView extends FrameLayout {
 	}
 
 	private void updateSlide() {
+		// TODO: Clean up math around here
 		float slideHideX = mSlideLeft.getSlideHideX();
+		float paddingLeftAndRight = mSlideRight.getPaddingLeft() + mSlideRight.getPaddingRight();
 
 		if (mSlide < 0) {
 			mSlideRight.setRevealPercent(-mSlide);
 			mSlideRight.setTranslationX(0);
 			mSlideLeft.setRevealPercent(0);
-			mSlideLeft.setTranslationX(slideHideX + mSlideRight.getSlideRevealX());
+			mSlideLeft.setTranslationX(slideHideX + mSlideRight.getSlideRevealX() - paddingLeftAndRight);
 		}
 		else if (mSlide == 0) {
 			mSlideRight.setRevealPercent(0);
 			mSlideRight.setTranslationX(0);
 			mSlideLeft.setRevealPercent(0);
-			mSlideLeft.setTranslationX(slideHideX);
+			mSlideLeft.setTranslationX(slideHideX - paddingLeftAndRight);
 		}
 		else {
 			mSlideLeft.setRevealPercent(mSlide);
-			mSlideLeft.setTranslationX((1 - mSlide) * slideHideX);
+			mSlideLeft.setTranslationX((1 - mSlide) * slideHideX - (1 - mSlide) * paddingLeftAndRight);
 			mSlideRight.setRevealPercent(0);
 			mSlideRight.setTranslationX(-mSlideLeft.getSlideRevealX());
 		}
