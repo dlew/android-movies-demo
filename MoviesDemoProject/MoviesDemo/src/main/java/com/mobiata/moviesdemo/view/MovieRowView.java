@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.mobiata.moviesdemo.util.FontCache;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 import java.util.ArrayList;
@@ -33,6 +35,9 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 	private ViewGroup mContentContainer;
 	private TextView mContentTitleView;
+	private ViewGroup mUpcomingContainer;
+	private TextView mUpcomingDateTextView;
+	private TextView mUpcomingDaysTextView;
 	private RatingBar mRatingBar;
 	private TextView mFilmRatingTextView;
 
@@ -57,6 +62,9 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mSubtitleView = (TextView) findViewById(R.id.subtitle_view);
 		mContentContainer = (ViewGroup) findViewById(R.id.content_container);
 		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
+		mUpcomingContainer = (ViewGroup) findViewById(R.id.upcoming_container);
+		mUpcomingDateTextView = (TextView) findViewById(R.id.upcoming_date_text_view);
+		mUpcomingDaysTextView = (TextView) findViewById(R.id.upcoming_days_text_view);
 		mRatingBar = (RatingBar) findViewById(R.id.rating_bar);
 		mFilmRatingTextView = (TextView) findViewById(R.id.film_rating_text_view);
 
@@ -100,6 +108,21 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 			mContentTitleView.setText(movie.getTitle());
 
+			if (movie.getDaysTillRelease() == 0) {
+				mUpcomingContainer.setVisibility(View.GONE);
+			}
+			else {
+				mUpcomingContainer.setVisibility(View.VISIBLE);
+
+				LocalDate date = LocalDate.now().plusDays(movie.getDaysTillRelease());
+				mUpcomingDateTextView.setText(makeTwoLineText(Integer.toString(date.getDayOfMonth()), date
+						.monthOfYear().getAsShortText().toUpperCase()));
+
+				// Split up our previous # of days text, as a convenience (not very robust I admit)
+				String[] split = ss.toString().split(" ");
+				mUpcomingDaysTextView.setText(makeTwoLineText(split[0], split[1]));
+			}
+
 			if (movie.getScore() == 0) {
 				mRatingBar.setVisibility(View.GONE);
 			}
@@ -110,6 +133,12 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 			mFilmRatingTextView.setText(movie.getFilmRating());
 		}
+	}
+
+	private CharSequence makeTwoLineText(String lineOne, String lineTwo) {
+		SpannableString ss = new SpannableString(lineOne + "\n" + lineTwo);
+		ss.setSpan(new RelativeSizeSpan(2f), 0, lineOne.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		return ss;
 	}
 
 	@Override
