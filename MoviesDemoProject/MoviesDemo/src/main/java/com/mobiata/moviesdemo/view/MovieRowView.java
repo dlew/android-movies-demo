@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.mobiata.moviesdemo.R;
@@ -32,6 +33,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 	private ViewGroup mContentContainer;
 	private TextView mContentTitleView;
+	private RatingBar mRatingBar;
 	private TextView mFilmRatingTextView;
 
 	public MovieRowView(Context context) {
@@ -55,6 +57,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mSubtitleView = (TextView) findViewById(R.id.subtitle_view);
 		mContentContainer = (ViewGroup) findViewById(R.id.content_container);
 		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
+		mRatingBar = (RatingBar) findViewById(R.id.rating_bar);
 		mFilmRatingTextView = (TextView) findViewById(R.id.film_rating_text_view);
 
 		mFilmRatingTextView.setTypeface(FontCache.getTypeface(getContext(), "fonts/RobotoCondensed-Bold.ttf"));
@@ -96,6 +99,15 @@ public class MovieRowView extends SlidingRevealViewGroup {
 			mSubtitleView.setText(ss);
 
 			mContentTitleView.setText(movie.getTitle());
+
+			if (movie.getScore() == 0) {
+				mRatingBar.setVisibility(View.GONE);
+			}
+			else {
+				mRatingBar.setVisibility(View.VISIBLE);
+				mRatingBar.setRating(movie.getScore());
+			}
+
 			mFilmRatingTextView.setText(movie.getFilmRating());
 		}
 	}
