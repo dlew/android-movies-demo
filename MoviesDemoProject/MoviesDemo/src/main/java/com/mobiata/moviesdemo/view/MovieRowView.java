@@ -31,6 +31,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 	private ViewGroup mContentContainer;
 	private TextView mContentTitleView;
+	private TextView mFilmRatingTextView;
 
 	public MovieRowView(Context context) {
 		super(context);
@@ -53,6 +54,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mSubtitleView = (TextView) findViewById(R.id.subtitle_view);
 		mContentContainer = (ViewGroup) findViewById(R.id.content_container);
 		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
+		mFilmRatingTextView = (TextView) findViewById(R.id.film_rating_text_view);
 	}
 
 	public void bind(Movie movie) {
@@ -91,6 +93,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 			mSubtitleView.setText(ss);
 
 			mContentTitleView.setText(movie.getTitle());
+			mFilmRatingTextView.setText(movie.getFilmRating());
 		}
 	}
 
