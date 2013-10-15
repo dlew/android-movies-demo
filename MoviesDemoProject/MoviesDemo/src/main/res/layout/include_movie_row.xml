@@ -33,10 +33,11 @@
 
         <RatingBar
             android:id="@+id/rating_bar"
-            style="?android:attr/ratingBarStyleSmall"
+            style="@style/movieRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dp"
             android:isIndicator="true"
             android:numStars="5"
             android:rating="3"
