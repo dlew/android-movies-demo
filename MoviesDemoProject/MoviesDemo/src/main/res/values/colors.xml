@@ -2,6 +2,7 @@
 
     <color name="bgWindow">#242324</color>
 
+    <color name="grayText">#A3A4A5</color>
     <color name="greenText">#3eb365</color>
 
 </resources>

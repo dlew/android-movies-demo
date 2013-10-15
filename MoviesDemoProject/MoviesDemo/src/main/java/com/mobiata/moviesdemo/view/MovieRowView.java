@@ -15,6 +15,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 	private ImageView mPosterView;
 	private TextView mTitleView;
+	private TextView mSubtitleView;
 
 	private ViewGroup mContentContainer;
 	private TextView mContentTitleView;
@@ -37,6 +38,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 		mPosterView = (ImageView) findViewById(R.id.poster_view);
 		mTitleView = (TextView) findViewById(R.id.title_view);
+		mSubtitleView = (TextView) findViewById(R.id.subtitle_view);
 		mContentContainer = (ViewGroup) findViewById(R.id.content_container);
 		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
 	}
@@ -47,6 +49,9 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		if (revealPercent == 0 || revealPercent == 1) {
 			mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
 			mTitleView.setText(movie.getTitle());
+
+			// TODO: Subtitle view
+
 			mContentTitleView.setText(movie.getTitle());
 		}
 	}
@@ -59,6 +64,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		boolean isSliding = revealPercent != 0 && revealPercent != 1;
 
 		mTitleView.setAlpha(1 - revealPercent);
+		mSubtitleView.setAlpha(1 - revealPercent);
 	}
 
 	@Override
@@ -70,6 +76,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		if (mPosterView.getLayerType() != toLayerType) {
 			mPosterView.setLayerType(toLayerType, null);
 			mTitleView.setLayerType(toLayerType, null);
+			mSubtitleView.setLayerType(toLayerType, null);
 		}
 
 		// Only HW layer the content container if it's even visible
