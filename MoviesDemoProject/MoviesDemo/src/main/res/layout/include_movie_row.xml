@@ -38,7 +38,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:textSize="14dp"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_film_rating"/>
 
     </RelativeLayout>
 
