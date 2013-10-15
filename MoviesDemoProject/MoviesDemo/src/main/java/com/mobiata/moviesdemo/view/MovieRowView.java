@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.util.BitmapCache;
+import com.mobiata.moviesdemo.util.FontCache;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -55,6 +56,8 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mContentContainer = (ViewGroup) findViewById(R.id.content_container);
 		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
 		mFilmRatingTextView = (TextView) findViewById(R.id.film_rating_text_view);
+
+		mFilmRatingTextView.setTypeface(FontCache.getTypeface(getContext(), "fonts/RobotoCondensed-Bold.ttf"));
 	}
 
 	public void bind(Movie movie) {
