@@ -1,42 +1,87 @@
 [
   {
     "name": "A Bug's Life",
-    "poster": "poster_a_bugs_life"
+    "poster": "poster_a_bugs_life",
+    "rating": "G",
+    "score": 3,
+    "showtimes": [
+      "18:20",
+      "20:45"
+    ]
   },
   {
     "name": "The Avengers",
-    "poster": "poster_the_avengers"
+    "poster": "poster_the_avengers",
+    "rating": "PG-13",
+    "score": 4,
+    "daysUntilRelease": 2
   },
   {
     "name": "Being John Malkovic",
-    "poster": "poster_being_john_malkovic"
+    "poster": "poster_being_john_malkovic",
+    "rating": "R",
+    "score": 5,
+    "showtimes": [
+      "18:30",
+      "21:00"
+    ]
   },
   {
     "name": "Face Off",
-    "poster": "poster_face_off"
+    "poster": "poster_face_off",
+    "rating": "R",
+    "score": 3,
+    "daysUntilRelease": 3
   },
   {
     "name": "Harry Potter",
-    "poster": "poster_harry_potter"
+    "poster": "poster_harry_potter",
+    "rating": "PG",
+    "score": 4,
+    "showtimes": [
+      "15:40",
+      "19:30"
+    ]
   },
   {
     "name": "Green Lantern",
-    "poster": "poster_green_lantern"
+    "poster": "poster_green_lantern",
+    "rating": "G",
+    "score": 1,
+    "daysUntilRelease": 3
   },
   {
     "name": "Ocean's Eleven",
-    "poster": "poster_oceans_eleven"
+    "poster": "poster_oceans_eleven",
+    "rating": "PG-13",
+    "score": 3,
+    "showtimes": [
+      "18:20",
+      "20:45"
+    ]
   },
   {
     "name": "The Shining",
-    "poster": "poster_the_shining"
+    "poster": "poster_the_shining",
+    "rating": "R",
+    "score": 5,
+    "daysUntilRelease": 5
   },
   {
     "name": "Titanic",
-    "poster": "poster_titanic"
+    "poster": "poster_titanic",
+    "rating": "PG-13",
+    "score": 4,
+    "showtimes": [
+      "15:20",
+      "20:55"
+    ]
   },
   {
     "name": "Top Gun",
-    "poster": "poster_top_gun"
+    "poster": "poster_top_gun",
+    "rating": "PG",
+    "score": 2,
+    "daysUntilRelease": 5
   }
 ]

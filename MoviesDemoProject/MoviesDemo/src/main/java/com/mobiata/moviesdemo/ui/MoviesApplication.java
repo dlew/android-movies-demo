@@ -8,6 +8,9 @@ import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.util.BitmapCache;
 import com.mobiata.moviesdemo.util.ResourceUtils;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +24,8 @@ public class MoviesApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		LocalDate date;
 
 		BitmapCache.init(this);
 
@@ -45,6 +50,27 @@ public class MoviesApplication extends Application {
 						}
 						else if (name.equals("poster")) {
 							movie.setPosterResId(ResourceUtils.getIdentifier(R.drawable.class, reader.nextString()));
+						}
+						else if (name.equals("rating")) {
+							movie.setFilmRating(reader.nextString());
+						}
+						else if (name.equals("score")) {
+							movie.setScore(reader.nextInt());
+						}
+						else if (name.equals("showtimes")) {
+							reader.beginArray();
+							List<LocalTime> localTimes = new ArrayList<LocalTime>();
+							while(reader.hasNext()) {
+								localTimes.add(LocalTime.parse(reader.nextString()));
+							}
+							movie.setShowTimes(localTimes);
+							reader.endArray();
+						}
+						else if (name.equals("daysUntilRelease")) {
+							movie.setDaysTillRelease(reader.nextInt());
+						}
+						else {
+							reader.skipValue();
 						}
 					}
 					mDemoData.add(movie);
