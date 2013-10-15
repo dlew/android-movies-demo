@@ -13,4 +13,9 @@
     <string name="title_section2">Everything</string>
     <string name="title_section3">Upcoming</string>
 
+    <plurals name="numberOfDays">
+        <item quantity="one">%s DAY</item>
+        <item quantity="other">%s DAYS</item>
+    </plurals>
+
 </resources>

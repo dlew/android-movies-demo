@@ -1,6 +1,11 @@
 package com.mobiata.moviesdemo.view;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +15,13 @@ import android.widget.TextView;
 import com.mobiata.moviesdemo.R;
 import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.util.BitmapCache;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalTime;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MovieRowView extends SlidingRevealViewGroup {
 
@@ -50,7 +62,33 @@ public class MovieRowView extends SlidingRevealViewGroup {
 			mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
 			mTitleView.setText(movie.getTitle());
 
-			// TODO: Subtitle view
+			SpannableString ss;
+			int highlightStart, highlightEnd;
+			if (movie.getShowTimes() != null) {
+				List<String> strings = new ArrayList<String>();
+
+				for (LocalTime time : movie.getShowTimes()) {
+					DateTime utcDateTime = time.toDateTimeToday(DateTimeZone.UTC);
+					strings.add(DateUtils.formatDateTime(getContext(), utcDateTime.getMillis(),
+							DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_UTC));
+				}
+
+				highlightStart = 0;
+				highlightEnd = strings.get(0).length();
+				ss = new SpannableString(TextUtils.join(", ", strings));
+			}
+			else {
+				int numDays = movie.getDaysTillRelease();
+				highlightStart = 0;
+				highlightEnd = Integer.toString(numDays).length();
+				ss = new SpannableString(getResources().getQuantityString(R.plurals.numberOfDays, numDays, numDays));
+			}
+
+			// Setup highlight for subtitle
+			ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.greenText)), highlightStart,
+					highlightEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+			mSubtitleView.setText(ss);
 
 			mContentTitleView.setText(movie.getTitle());
 		}
