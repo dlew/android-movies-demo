@@ -130,5 +130,25 @@
             android:text="TEST"/>
     </com.mobiata.moviesdemo.view.CenteringRelativeLayout>
 
+    <!-- These views fake the rounded corners/drop shadow -->
+
+    <View
+        android:id="@+id/slide_overlay_middle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_overlay_middle"/>
+
+    <View
+        android:id="@+id/slide_overlay_left"
+        android:layout_width="12dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_overlay_left"/>
+
+    <View
+        android:id="@+id/slide_overlay_right"
+        android:layout_width="12dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/card_overlay_right"/>
 
 </com.mobiata.moviesdemo.view.MovieRowView>

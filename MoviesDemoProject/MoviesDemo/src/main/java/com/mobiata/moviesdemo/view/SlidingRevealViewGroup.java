@@ -5,6 +5,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.mobiata.moviesdemo.R;
+
 /**
  * Holds two views which "slide" open
  *
@@ -30,6 +32,9 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 	private View mSpaceView;
 	private View mSlidingView;
 	private View mCoverView;
+	private View mSlideOverlayLeft;
+	private View mSlideOverlayMiddle;
+	private View mSlideOverlayRight;
 
 	public SlidingRevealViewGroup(Context context) {
 		this(context, null);
@@ -59,6 +64,10 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 		mSpaceView = getChildAt(0);
 		mSlidingView = getChildAt(1);
 		mCoverView = getChildAt(2);
+
+		mSlideOverlayLeft = findViewById(R.id.slide_overlay_left);
+		mSlideOverlayMiddle = findViewById(R.id.slide_overlay_middle);
+		mSlideOverlayRight = findViewById(R.id.slide_overlay_right);
 	}
 
 	public void setReveal(Reveal reveal) {
@@ -107,6 +116,12 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 		// Optimize if we're not showing the sliding view at all
 		mSlidingView.setVisibility(mRevealPercent == 0 ? View.GONE : View.VISIBLE);
 
+		// Slide the middle so that its right edge is underneath what is revealed
+		// Slide the right so that it's always on the right corner
+		// TODO: This doesn't work for Reveal.LEFT
+		mSlideOverlayMiddle.setTranslationX(-translationX);
+		mSlideOverlayRight.setTranslationX(-translationX);
+
 		onUpdateSlide();
 	}
 
@@ -116,5 +131,10 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 
 	public void setUseHardwareLayers(boolean useHardwareLayers) {
 		// For subclasses to initialize hardware layers during animations
+
+		int toLayerType = useHardwareLayers ? View.LAYER_TYPE_HARDWARE : View.LAYER_TYPE_NONE;
+		mSlideOverlayLeft.setLayerType(toLayerType, null);
+		mSlideOverlayMiddle.setLayerType(toLayerType, null);
+		mSlideOverlayRight.setLayerType(toLayerType, null);
 	}
 }
