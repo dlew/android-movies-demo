@@ -16,7 +16,8 @@
         android:name="com.mobiata.moviesdemo.ui.MoviesApplication">
         <activity
             android:name="com.mobiata.moviesdemo.ui.MoviesActivity"
-            android:label="@string/title_activity_movies" >
+            android:label="@string/title_activity_movies"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
