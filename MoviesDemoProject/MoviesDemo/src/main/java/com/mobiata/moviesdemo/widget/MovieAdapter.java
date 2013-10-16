@@ -24,10 +24,13 @@ public class MovieAdapter extends BaseAdapter {
 
 	private float mSlide;
 
-	public MovieAdapter(Context context, List<Movie> movies, MovieAdapterListener listener) {
+	private int mCellSize;
+
+	public MovieAdapter(Context context, List<Movie> movies, MovieAdapterListener listener, int cellSize) {
 		mContext = context;
 		mMovies = movies;
 		mListener = listener;
+		mCellSize = cellSize;
 	}
 
 	public void setSlide(float slide) {
@@ -70,6 +73,11 @@ public class MovieAdapter extends BaseAdapter {
 			vh.mSlidingPairView = (SlidingPairView) convertView.findViewById(R.id.sliding_pair);
 			vh.mNowPlayingMovie = (MovieRowView) convertView.findViewById(R.id.slide_reveal_right);
 			vh.mUpcomingMovie = (MovieRowView) convertView.findViewById(R.id.slide_reveal_left);
+
+			// We set the cell size dynamically, because it's measured on the size of
+			// the screen ahead of time
+			vh.mNowPlayingMovie.setCellSize(mCellSize);
+			vh.mUpcomingMovie.setCellSize(mCellSize);
 
 			convertView.setTag(vh);
 		}

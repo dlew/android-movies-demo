@@ -2,6 +2,7 @@ package com.mobiata.moviesdemo.ui;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -120,8 +121,14 @@ public class MoviesActivity extends FragmentActivity implements ActionBar.TabLis
 		mListView.addHeaderView(inflater.inflate(R.layout.include_header_footer_space, mListView, false));
 		mListView.addFooterView(inflater.inflate(R.layout.include_header_footer_space, mListView, false));
 
+		// We want the total width == 3*cell padding + 2*cell size
+		int cellPadding = getResources().getDimensionPixelSize(R.dimen.cell_padding);
+		Point size = new Point();
+		getWindowManager().getDefaultDisplay().getSize(size);
+		int cellSize = (size.x - 3 * cellPadding) / 2;
+
 		MoviesApplication app = (MoviesApplication) getApplication();
-		mAdapter = new MovieAdapter(this, app.getDemoData(), this);
+		mAdapter = new MovieAdapter(this, app.getDemoData(), this, cellSize);
 		mListView.setAdapter(mAdapter);
 	}
 

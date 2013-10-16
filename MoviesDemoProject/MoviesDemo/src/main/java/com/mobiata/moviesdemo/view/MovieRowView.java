@@ -29,6 +29,7 @@ import java.util.List;
 
 public class MovieRowView extends SlidingRevealViewGroup {
 
+	private ViewGroup mCoverContainer;
 	private ImageView mPosterView;
 	private TextView mTitleView;
 	private TextView mSubtitleView;
@@ -59,6 +60,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
+		mCoverContainer = (ViewGroup) findViewById(R.id.cover_container);
 		mPosterView = (ImageView) findViewById(R.id.poster_view);
 		mTitleView = (TextView) findViewById(R.id.title_view);
 		mSubtitleView = (TextView) findViewById(R.id.subtitle_view);
@@ -73,6 +75,11 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mFilmRatingTextView = (TextView) findViewById(R.id.film_rating_text_view);
 
 		mFilmRatingTextView.setTypeface(FontCache.getTypeface(getContext(), "fonts/RobotoCondensed-Bold.ttf"));
+	}
+
+	public void setCellSize(int cellSize) {
+		getLayoutParams().height = cellSize;
+		mCoverContainer.getLayoutParams().width = cellSize;
 	}
 
 	public void bind(Movie movie) {

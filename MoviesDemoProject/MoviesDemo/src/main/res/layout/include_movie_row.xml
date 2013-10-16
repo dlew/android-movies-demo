@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/slide_reveal_right"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/cell_size"
+    android:layout_height="wrap_content"
     android:paddingLeft="@dimen/cell_padding"
     android:paddingRight="@dimen/cell_padding">
 
@@ -111,7 +111,8 @@
     <!-- The cover of the slide -->
 
     <com.mobiata.moviesdemo.view.CenteringRelativeLayout
-        android:layout_width="@dimen/cell_size"
+        android:id="@+id/cover_container"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <ImageView
