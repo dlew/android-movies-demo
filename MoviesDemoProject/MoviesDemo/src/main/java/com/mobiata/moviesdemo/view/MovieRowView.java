@@ -83,77 +83,73 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	}
 
 	public void bind(Movie movie) {
-		// Only bind if we're not mid-reveal
-		float revealPercent = getRevealPercent();
-		if (revealPercent == 0 || revealPercent == 1) {
-			mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
-			mTitleView.setText(movie.getTitle());
+		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
+		mTitleView.setText(movie.getTitle());
 
-			SpannableString ss;
-			int highlightStart, highlightEnd;
-			if (movie.getShowTimes() != null) {
-				List<String> strings = new ArrayList<String>();
+		SpannableString ss;
+		int highlightStart, highlightEnd;
+		if (movie.getShowTimes() != null) {
+			List<String> strings = new ArrayList<String>();
 
-				for (LocalTime time : movie.getShowTimes()) {
-					DateTime utcDateTime = time.toDateTimeToday(DateTimeZone.UTC);
-					strings.add(DateUtils.formatDateTime(getContext(), utcDateTime.getMillis(),
-							DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_UTC));
-				}
-
-				highlightStart = 0;
-				highlightEnd = strings.get(0).length();
-				ss = new SpannableString(TextUtils.join(", ", strings));
-			}
-			else {
-				int numDays = movie.getDaysTillRelease();
-				highlightStart = 0;
-				highlightEnd = Integer.toString(numDays).length();
-				ss = new SpannableString(getResources().getQuantityString(R.plurals.numberOfDays, numDays, numDays));
+			for (LocalTime time : movie.getShowTimes()) {
+				DateTime utcDateTime = time.toDateTimeToday(DateTimeZone.UTC);
+				strings.add(DateUtils.formatDateTime(getContext(), utcDateTime.getMillis(),
+						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_UTC));
 			}
 
-			// Setup highlight for subtitle
-			ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.greenText)), highlightStart,
-					highlightEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-			mSubtitleView.setText(ss);
-
-			mContentTitleView.setText(movie.getTitle());
-
-			if (movie.getShowTimes() == null) {
-				mShowtimesContainer.setVisibility(View.GONE);
-			}
-			else {
-				mShowtimesContainer.setVisibility(View.VISIBLE);
-
-				// Show our previous showtimes text
-				mShowtimesTextView.setText(ss.toString());
-			}
-
-			if (movie.getDaysTillRelease() == 0) {
-				mUpcomingContainer.setVisibility(View.GONE);
-			}
-			else {
-				mUpcomingContainer.setVisibility(View.VISIBLE);
-
-				LocalDate date = LocalDate.now().plusDays(movie.getDaysTillRelease());
-				mUpcomingDateTextView.setText(makeTwoLineText(Integer.toString(date.getDayOfMonth()), date
-						.monthOfYear().getAsShortText().toUpperCase()));
-
-				// Split up our previous # of days text, as a convenience (not very robust I admit)
-				String[] split = ss.toString().split(" ");
-				mUpcomingDaysTextView.setText(makeTwoLineText(split[0], split[1]));
-			}
-
-			if (movie.getScore() == 0) {
-				mRatingBar.setVisibility(View.GONE);
-			}
-			else {
-				mRatingBar.setVisibility(View.VISIBLE);
-				mRatingBar.setRating(movie.getScore());
-			}
-
-			mFilmRatingTextView.setText(movie.getFilmRating());
+			highlightStart = 0;
+			highlightEnd = strings.get(0).length();
+			ss = new SpannableString(TextUtils.join(", ", strings));
 		}
+		else {
+			int numDays = movie.getDaysTillRelease();
+			highlightStart = 0;
+			highlightEnd = Integer.toString(numDays).length();
+			ss = new SpannableString(getResources().getQuantityString(R.plurals.numberOfDays, numDays, numDays));
+		}
+
+		// Setup highlight for subtitle
+		ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.greenText)), highlightStart,
+				highlightEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+		mSubtitleView.setText(ss);
+
+		mContentTitleView.setText(movie.getTitle());
+
+		if (movie.getShowTimes() == null) {
+			mShowtimesContainer.setVisibility(View.GONE);
+		}
+		else {
+			mShowtimesContainer.setVisibility(View.VISIBLE);
+
+			// Show our previous showtimes text
+			mShowtimesTextView.setText(ss.toString());
+		}
+
+		if (movie.getDaysTillRelease() == 0) {
+			mUpcomingContainer.setVisibility(View.GONE);
+		}
+		else {
+			mUpcomingContainer.setVisibility(View.VISIBLE);
+
+			LocalDate date = LocalDate.now().plusDays(movie.getDaysTillRelease());
+			mUpcomingDateTextView.setText(makeTwoLineText(Integer.toString(date.getDayOfMonth()), date
+					.monthOfYear().getAsShortText().toUpperCase()));
+
+			// Split up our previous # of days text, as a convenience (not very robust I admit)
+			String[] split = ss.toString().split(" ");
+			mUpcomingDaysTextView.setText(makeTwoLineText(split[0], split[1]));
+		}
+
+		if (movie.getScore() == 0) {
+			mRatingBar.setVisibility(View.GONE);
+		}
+		else {
+			mRatingBar.setVisibility(View.VISIBLE);
+			mRatingBar.setRating(movie.getScore());
+		}
+
+		mFilmRatingTextView.setText(movie.getFilmRating());
 	}
 
 	private CharSequence makeTwoLineText(String lineOne, String lineTwo) {
