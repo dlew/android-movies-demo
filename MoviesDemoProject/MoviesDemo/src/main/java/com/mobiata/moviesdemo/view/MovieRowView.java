@@ -35,6 +35,8 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 	private ViewGroup mContentContainer;
 	private TextView mContentTitleView;
+	private ViewGroup mShowtimesContainer;
+	private TextView mShowtimesTextView;
 	private ViewGroup mUpcomingContainer;
 	private TextView mUpcomingDateTextView;
 	private TextView mUpcomingDaysTextView;
@@ -62,6 +64,8 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mSubtitleView = (TextView) findViewById(R.id.subtitle_view);
 		mContentContainer = (ViewGroup) findViewById(R.id.content_container);
 		mContentTitleView = (TextView) findViewById(R.id.content_title_view);
+		mShowtimesContainer = (ViewGroup) findViewById(R.id.showtimes_container);
+		mShowtimesTextView = (TextView) findViewById(R.id.showtimes_text_view);
 		mUpcomingContainer = (ViewGroup) findViewById(R.id.upcoming_container);
 		mUpcomingDateTextView = (TextView) findViewById(R.id.upcoming_date_text_view);
 		mUpcomingDaysTextView = (TextView) findViewById(R.id.upcoming_days_text_view);
@@ -107,6 +111,16 @@ public class MovieRowView extends SlidingRevealViewGroup {
 			mSubtitleView.setText(ss);
 
 			mContentTitleView.setText(movie.getTitle());
+
+			if (movie.getShowTimes() == null) {
+				mShowtimesContainer.setVisibility(View.GONE);
+			}
+			else {
+				mShowtimesContainer.setVisibility(View.VISIBLE);
+
+				// Show our previous showtimes text
+				mShowtimesTextView.setText(ss.toString());
+			}
 
 			if (movie.getDaysTillRelease() == 0) {
 				mUpcomingContainer.setVisibility(View.GONE);

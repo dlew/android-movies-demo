@@ -31,13 +31,34 @@
             android:textSize="18dp"
             android:textColor="@android:color/white"/>
 
+        <!-- Shown for movie showtimes -->
+        <LinearLayout
+            android:id="@+id/showtimes_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content_title_view"
+            android:layout_above="@+id/film_rating_text_view"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/showtimes_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
         <!-- Shown for upcoming movies-->
         <LinearLayout
             android:id="@+id/upcoming_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/content_title_view"
-            android:layout_above="@+id/rating_bar"
+            android:layout_above="@+id/film_rating_text_view"
             android:orientation="horizontal"
             android:gravity="center">
 
