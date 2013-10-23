@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
@@ -19,11 +18,10 @@ import com.mobiata.moviesdemo.data.Movie;
 import com.mobiata.moviesdemo.util.BitmapCache;
 import com.mobiata.moviesdemo.util.FontCache;
 
-import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,16 +42,23 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	private RatingBar mRatingBar;
 	private TextView mFilmRatingTextView;
 
+	// Cached for faster binding
+	private List<String> mStrArr = new ArrayList<String>();
+	private DateFormat mDateFormat;
+
 	public MovieRowView(Context context) {
-		super(context);
+		this(context, null);
 	}
 
 	public MovieRowView(Context context, AttributeSet attrs) {
-		super(context, attrs);
+		this(context, attrs, 0);
 	}
 
 	public MovieRowView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+
+		mDateFormat = android.text.format.DateFormat.getTimeFormat(context);
+		mDateFormat.setTimeZone(DateTimeZone.UTC.toTimeZone());
 	}
 
 	@Override
@@ -87,23 +92,18 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		mTitleView.setText(movie.getTitle());
 
 		SpannableString ss;
-		int highlightStart, highlightEnd;
+		int highlightStart = 0;
+		int highlightEnd;
 		if (movie.getShowTimes() != null) {
-			List<String> strings = new ArrayList<String>();
-
-			for (LocalTime time : movie.getShowTimes()) {
-				DateTime utcDateTime = time.toDateTimeToday(DateTimeZone.UTC);
-				strings.add(DateUtils.formatDateTime(getContext(), utcDateTime.getMillis(),
-						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_UTC));
+			mStrArr.clear();
+			for (long utcMillis : movie.getShowTimesInUtcMillis()) {
+				mStrArr.add(mDateFormat.format(utcMillis));
 			}
-
-			highlightStart = 0;
-			highlightEnd = strings.get(0).length();
-			ss = new SpannableString(TextUtils.join(", ", strings));
+			highlightEnd = mStrArr.get(0).length();
+			ss = new SpannableString(TextUtils.join(", ", mStrArr));
 		}
 		else {
 			int numDays = movie.getDaysTillRelease();
-			highlightStart = 0;
 			highlightEnd = Integer.toString(numDays).length();
 			ss = new SpannableString(getResources().getQuantityString(R.plurals.numberOfDays, numDays, numDays));
 		}

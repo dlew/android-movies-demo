@@ -1,7 +1,10 @@
 package com.mobiata.moviesdemo.data;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalTime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -19,6 +22,9 @@ public class Movie {
 	private List<LocalTime> mShowTimes;
 
 	private int mDaysTillRelease;
+
+	// Cached; calculated from showtimes
+	private List<Long> mShowTimeInUtcMillis;
 
 	public String getTitle() {
 		return mTitle;
@@ -58,6 +64,16 @@ public class Movie {
 
 	public void setShowTimes(List<LocalTime> showTimes) {
 		mShowTimes = showTimes;
+
+		mShowTimeInUtcMillis = new ArrayList<Long>();
+		for (LocalTime time : showTimes) {
+			DateTime utcDateTime = time.toDateTimeToday(DateTimeZone.UTC);
+			mShowTimeInUtcMillis.add(utcDateTime.getMillis());
+		}
+	}
+
+	public List<Long> getShowTimesInUtcMillis() {
+		return mShowTimeInUtcMillis;
 	}
 
 	public int getDaysTillRelease() {
