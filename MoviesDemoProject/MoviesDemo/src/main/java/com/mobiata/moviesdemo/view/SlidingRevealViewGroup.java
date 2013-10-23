@@ -113,9 +113,6 @@ public class SlidingRevealViewGroup extends RelativeLayout {
 		float translationX = (1 - mRevealPercent) * mSlidingView.getWidth() - coverLeftoverX;
 		mSlidingView.setTranslationX(mReveal == Reveal.RIGHT ? -translationX : translationX);
 
-		// Optimize if we're not showing the sliding view at all
-		mSlidingView.setVisibility(mRevealPercent == 0 ? View.GONE : View.VISIBLE);
-
 		// Slide the middle so that its right edge is underneath what is revealed
 		// Slide the right so that it's always on the right corner
 		// TODO: This doesn't work for Reveal.LEFT

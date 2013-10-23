@@ -179,10 +179,6 @@ public class MovieRowView extends SlidingRevealViewGroup {
 			mPosterView.setLayerType(toLayerType, null);
 			mTitleView.setLayerType(toLayerType, null);
 			mSubtitleView.setLayerType(toLayerType, null);
-		}
-
-		// Only HW layer the content container if it's even visible
-		if (mContentContainer.getVisibility() == View.VISIBLE && mContentContainer.getLayerType() != toLayerType) {
 			mContentContainer.setLayerType(toLayerType, null);
 		}
 	}
