@@ -1,8 +1,8 @@
 [
   {
-    "name": "A Bug's Life",
-    "poster": "poster_a_bugs_life",
-    "rating": "G",
+    "name": "Cloudy With a Chance of Meatballs 2",
+    "poster": "poster_cloudy_with_a_chance_of_meatballs_2",
+    "rating": "PG",
     "score": 3,
     "showtimes": [
       "18:20",
@@ -10,16 +10,15 @@
     ]
   },
   {
-    "name": "The Avengers",
-    "poster": "poster_the_avengers",
-    "rating": "PG-13",
-    "score": 4,
+    "name": "The Counselor",
+    "poster": "poster_the_counselor",
+    "rating": "R",
     "daysUntilRelease": 2
   },
   {
-    "name": "Being John Malkovic",
-    "poster": "poster_being_john_malkovic",
-    "rating": "R",
+    "name": "Gravity",
+    "poster": "poster_gravity",
+    "rating": "PG-13",
     "score": 5,
     "showtimes": [
       "18:30",
@@ -27,50 +26,48 @@
     ]
   },
   {
-    "name": "Face Off",
-    "poster": "poster_face_off",
+    "name": "Bad Grandpa",
+    "poster": "poster_bad_grandpa",
     "rating": "R",
-    "score": 3,
     "daysUntilRelease": 3
   },
   {
-    "name": "Harry Potter",
-    "poster": "poster_harry_potter",
-    "rating": "PG",
-    "score": 4,
+    "name": "The Fifth Estate",
+    "poster": "poster_the_fifth_estate",
+    "rating": "R",
+    "score": 2,
     "showtimes": [
       "15:40",
       "19:30"
     ]
   },
   {
-    "name": "Green Lantern",
-    "poster": "poster_green_lantern",
-    "rating": "G",
-    "score": 1,
+    "name": "Ender's Game",
+    "poster": "poster_enders_game",
+    "rating": "PG-13",
     "daysUntilRelease": 3
   },
   {
-    "name": "Ocean's Eleven",
-    "poster": "poster_oceans_eleven",
+    "name": "Enough Said",
+    "poster": "poster_enough_said",
     "rating": "PG-13",
-    "score": 3,
+    "score": 5,
     "showtimes": [
       "18:20",
       "20:45"
     ]
   },
   {
-    "name": "The Shining",
-    "poster": "poster_the_shining",
+    "name": "About Time",
+    "poster": "poster_about_time",
     "rating": "R",
-    "score": 5,
+    "score": 4,
     "daysUntilRelease": 5
   },
   {
-    "name": "Titanic",
-    "poster": "poster_titanic",
-    "rating": "PG-13",
+    "name": "Prisoners",
+    "poster": "poster_prisoners",
+    "rating": "R",
     "score": 4,
     "showtimes": [
       "15:20",
@@ -78,10 +75,26 @@
     ]
   },
   {
-    "name": "Top Gun",
-    "poster": "poster_top_gun",
-    "rating": "PG",
-    "score": 2,
+    "name": "Thor: The Dark World",
+    "poster": "poster_thor",
+    "rating": "PG-13",
+    "score": 4,
+    "daysUntilRelease": 5
+  },
+  {
+    "name": "Runner Runner",
+    "poster": "poster_runner_runner",
+    "rating": "R",
+    "score": 1,
+    "showtimes": [
+      "15:20",
+      "20:55"
+    ]
+  },
+  {
+    "name": "Frozen",
+    "poster": "poster_frozen",
+    "rating": "G",
     "daysUntilRelease": 5
   }
 ]
