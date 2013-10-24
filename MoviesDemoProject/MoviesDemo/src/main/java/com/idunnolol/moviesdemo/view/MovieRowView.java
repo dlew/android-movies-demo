@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -95,8 +94,6 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	}
 
 	public void bind(Movie movie) {
-		long start = System.nanoTime();
-
 		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
 		mTitleView.setText(movie.getTitle());
 
@@ -158,8 +155,6 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		}
 
 		mFilmRatingTextView.setText(movie.getFilmRating());
-
-		Log.i("test", "bind() time: " + ((System.nanoTime() - start) / 1000000));
 	}
 
 	private CharSequence makeTwoLineText(String lineOne, String lineTwo) {
