@@ -1,10 +1,10 @@
-package com.mobiata.moviesdemo.view;
+package com.idunnolol.moviesdemo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-import com.mobiata.moviesdemo.R;
+import com.idunnolol.moviesdemo.R;
 
 /**
  * Has two children - a left and right sliding pair.

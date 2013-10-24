@@ -1,4 +1,4 @@
-<com.mobiata.moviesdemo.view.MovieRowView
+<com.idunnolol.moviesdemo.view.MovieRowView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/slide_reveal_right"
     android:layout_width="match_parent"
@@ -110,7 +110,7 @@
 
     <!-- The cover of the slide -->
 
-    <com.mobiata.moviesdemo.view.CenteringRelativeLayout
+    <com.idunnolol.moviesdemo.view.CenteringRelativeLayout
         android:id="@+id/cover_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
@@ -150,7 +150,7 @@
             android:textStyle="bold"
             android:textColor="@color/grayText"
             android:text="TEST"/>
-    </com.mobiata.moviesdemo.view.CenteringRelativeLayout>
+    </com.idunnolol.moviesdemo.view.CenteringRelativeLayout>
 
     <!-- These views fake the rounded corners/drop shadow -->
 
@@ -173,4 +173,4 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/card_overlay_right"/>
 
-</com.mobiata.moviesdemo.view.MovieRowView>
+</com.idunnolol.moviesdemo.view.MovieRowView>

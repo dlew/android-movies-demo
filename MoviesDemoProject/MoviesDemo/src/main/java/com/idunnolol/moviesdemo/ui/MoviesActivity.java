@@ -1,4 +1,4 @@
-package com.mobiata.moviesdemo.ui;
+package com.idunnolol.moviesdemo.ui;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -16,11 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.mobiata.moviesdemo.R;
-import com.mobiata.moviesdemo.data.Movie;
-import com.mobiata.moviesdemo.view.SlidingListView;
-import com.mobiata.moviesdemo.view.ViewPager;
-import com.mobiata.moviesdemo.widget.MovieAdapter;
+import com.idunnolol.moviesdemo.R;
+import com.idunnolol.moviesdemo.data.Movie;
+import com.idunnolol.moviesdemo.view.SlidingListView;
+import com.idunnolol.moviesdemo.view.ViewPager;
+import com.idunnolol.moviesdemo.widget.MovieAdapter;
 
 import java.util.Locale;
 

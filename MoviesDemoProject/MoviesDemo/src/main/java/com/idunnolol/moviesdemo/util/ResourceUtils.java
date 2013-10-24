@@ -1,4 +1,4 @@
-package com.mobiata.moviesdemo.util;
+package com.idunnolol.moviesdemo.util;
 
 import android.util.Log;
 

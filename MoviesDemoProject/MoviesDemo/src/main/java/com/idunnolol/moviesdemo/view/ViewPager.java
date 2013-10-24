@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mobiata.moviesdemo.view;
+package com.idunnolol.moviesdemo.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -263,17 +263,17 @@ public class ViewPager extends ViewGroup {
          * or when it is fully stopped/idle.
          *
          * @param state The new scroll state.
-         * @see com.mobiata.moviesdemo.view.ViewPager#SCROLL_STATE_IDLE
-         * @see com.mobiata.moviesdemo.view.ViewPager#SCROLL_STATE_DRAGGING
-         * @see com.mobiata.moviesdemo.view.ViewPager#SCROLL_STATE_SETTLING
+         * @see com.idunnolol.moviesdemo.view.ViewPager#SCROLL_STATE_IDLE
+         * @see com.idunnolol.moviesdemo.view.ViewPager#SCROLL_STATE_DRAGGING
+         * @see com.idunnolol.moviesdemo.view.ViewPager#SCROLL_STATE_SETTLING
          */
         public void onPageScrollStateChanged(int state);
     }
 
     /**
-     * Simple implementation of the {@link com.mobiata.moviesdemo.view.ViewPager.OnPageChangeListener} interface with stub
+     * Simple implementation of the {@link com.idunnolol.moviesdemo.view.ViewPager.OnPageChangeListener} interface with stub
      * implementations of each method. Extend this if you do not intend to override
-     * every method of {@link com.mobiata.moviesdemo.view.ViewPager.OnPageChangeListener}.
+     * every method of {@link com.idunnolol.moviesdemo.view.ViewPager.OnPageChangeListener}.
      */
     public static class SimpleOnPageChangeListener implements OnPageChangeListener {
         @Override
@@ -570,7 +570,7 @@ public class ViewPager extends ViewGroup {
 
     /**
      * Set a listener that will be invoked whenever the page changes or is incrementally
-     * scrolled. See {@link com.mobiata.moviesdemo.view.ViewPager.OnPageChangeListener}.
+     * scrolled. See {@link com.idunnolol.moviesdemo.view.ViewPager.OnPageChangeListener}.
      *
      * @param listener Listener to set
      */
@@ -579,7 +579,7 @@ public class ViewPager extends ViewGroup {
     }
 
     /**
-     * Set a {@link com.mobiata.moviesdemo.view.ViewPager.PageTransformer} that will be called for each attached page whenever
+     * Set a {@link com.idunnolol.moviesdemo.view.ViewPager.PageTransformer} that will be called for each attached page whenever
      * the scroll position is changed. This allows the application to apply custom property
      * transformations to each page, overriding the default sliding look and feel.
      *

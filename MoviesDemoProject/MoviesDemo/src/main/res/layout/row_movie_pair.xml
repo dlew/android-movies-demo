@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/cell_padding_half"
     android:paddingBottom="@dimen/cell_padding_half">
 
-    <com.mobiata.moviesdemo.view.SlidingPairView
+    <com.idunnolol.moviesdemo.view.SlidingPairView
         android:id="@+id/sliding_pair"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,6 +20,6 @@
             android:id="@+id/slide_reveal_left"
             layout="@layout/include_movie_row" />
 
-    </com.mobiata.moviesdemo.view.SlidingPairView>
+    </com.idunnolol.moviesdemo.view.SlidingPairView>
 
 </FrameLayout>

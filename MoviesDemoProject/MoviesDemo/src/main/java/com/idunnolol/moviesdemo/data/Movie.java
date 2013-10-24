@@ -1,4 +1,4 @@
-package com.mobiata.moviesdemo.data;
+package com.idunnolol.moviesdemo.data;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;

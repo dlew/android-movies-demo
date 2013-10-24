@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mobiata.moviesdemo"
+    package="com.idunnolol.moviesdemo"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -13,9 +13,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name="com.mobiata.moviesdemo.ui.MoviesApplication">
+        android:name="com.idunnolol.moviesdemo.ui.MoviesApplication">
         <activity
-            android:name="com.mobiata.moviesdemo.ui.MoviesActivity"
+            android:name="com.idunnolol.moviesdemo.ui.MoviesActivity"
             android:label="@string/title_activity_movies"
             android:screenOrientation="portrait">
             <intent-filter>

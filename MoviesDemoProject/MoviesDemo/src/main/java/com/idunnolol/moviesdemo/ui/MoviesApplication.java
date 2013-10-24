@@ -1,12 +1,12 @@
-package com.mobiata.moviesdemo.ui;
+package com.idunnolol.moviesdemo.ui;
 
 import android.app.Application;
 import android.util.JsonReader;
 
-import com.mobiata.moviesdemo.R;
-import com.mobiata.moviesdemo.data.Movie;
-import com.mobiata.moviesdemo.util.BitmapCache;
-import com.mobiata.moviesdemo.util.ResourceUtils;
+import com.idunnolol.moviesdemo.R;
+import com.idunnolol.moviesdemo.data.Movie;
+import com.idunnolol.moviesdemo.util.BitmapCache;
+import com.idunnolol.moviesdemo.util.ResourceUtils;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;

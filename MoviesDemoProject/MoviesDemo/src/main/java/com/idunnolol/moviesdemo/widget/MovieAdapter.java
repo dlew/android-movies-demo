@@ -1,4 +1,4 @@
-package com.mobiata.moviesdemo.widget;
+package com.idunnolol.moviesdemo.widget;
 
 import android.content.Context;
 import android.util.Pair;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.mobiata.moviesdemo.R;
-import com.mobiata.moviesdemo.data.Movie;
-import com.mobiata.moviesdemo.view.MovieRowView;
-import com.mobiata.moviesdemo.view.SlidingPairView;
+import com.idunnolol.moviesdemo.R;
+import com.idunnolol.moviesdemo.data.Movie;
+import com.idunnolol.moviesdemo.view.MovieRowView;
+import com.idunnolol.moviesdemo.view.SlidingPairView;
 
 import java.util.List;
 

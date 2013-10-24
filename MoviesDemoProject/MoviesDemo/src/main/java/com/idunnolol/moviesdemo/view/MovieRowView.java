@@ -1,4 +1,4 @@
-package com.mobiata.moviesdemo.view;
+package com.idunnolol.moviesdemo.view;
 
 import android.content.Context;
 import android.text.Spannable;
@@ -7,16 +7,17 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.mobiata.moviesdemo.R;
-import com.mobiata.moviesdemo.data.Movie;
-import com.mobiata.moviesdemo.util.BitmapCache;
-import com.mobiata.moviesdemo.util.FontCache;
+import com.idunnolol.moviesdemo.R;
+import com.idunnolol.moviesdemo.data.Movie;
+import com.idunnolol.moviesdemo.util.BitmapCache;
+import com.idunnolol.moviesdemo.util.FontCache;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
@@ -45,6 +46,8 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	// Cached for faster binding
 	private List<String> mStrArr = new ArrayList<String>();
 	private DateFormat mDateFormat;
+	private ForegroundColorSpan mGreenTextColorSpan;
+	private RelativeSizeSpan mTwoLineSizeSpan;
 
 	public MovieRowView(Context context) {
 		this(context, null);
@@ -59,6 +62,10 @@ public class MovieRowView extends SlidingRevealViewGroup {
 
 		mDateFormat = android.text.format.DateFormat.getTimeFormat(context);
 		mDateFormat.setTimeZone(DateTimeZone.UTC.toTimeZone());
+
+		mGreenTextColorSpan = new ForegroundColorSpan(getResources().getColor(R.color.greenText));
+
+		mTwoLineSizeSpan = new RelativeSizeSpan(2f);
 	}
 
 	@Override
@@ -88,6 +95,8 @@ public class MovieRowView extends SlidingRevealViewGroup {
 	}
 
 	public void bind(Movie movie) {
+		long start = System.nanoTime();
+
 		mPosterView.setImageBitmap(BitmapCache.getBitmap(movie.getPosterResId()));
 		mTitleView.setText(movie.getTitle());
 
@@ -109,8 +118,7 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		}
 
 		// Setup highlight for subtitle
-		ss.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.greenText)), highlightStart,
-				highlightEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		ss.setSpan(mGreenTextColorSpan, highlightStart, highlightEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 		mSubtitleView.setText(ss);
 
@@ -150,11 +158,13 @@ public class MovieRowView extends SlidingRevealViewGroup {
 		}
 
 		mFilmRatingTextView.setText(movie.getFilmRating());
+
+		Log.i("test", "bind() time: " + ((System.nanoTime() - start) / 1000000));
 	}
 
 	private CharSequence makeTwoLineText(String lineOne, String lineTwo) {
 		SpannableString ss = new SpannableString(lineOne + "\n" + lineTwo);
-		ss.setSpan(new RelativeSizeSpan(2f), 0, lineOne.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		ss.setSpan(mTwoLineSizeSpan, 0, lineOne.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		return ss;
 	}
 

@@ -1,4 +1,4 @@
-package com.mobiata.moviesdemo.view;
+package com.idunnolol.moviesdemo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

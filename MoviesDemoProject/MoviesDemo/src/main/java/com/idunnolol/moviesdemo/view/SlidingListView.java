@@ -1,11 +1,11 @@
-package com.mobiata.moviesdemo.view;
+package com.idunnolol.moviesdemo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListView;
 
-import com.mobiata.moviesdemo.R;
+import com.idunnolol.moviesdemo.R;
 
 import java.util.ArrayList;
 import java.util.List;
